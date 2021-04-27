@@ -8,9 +8,7 @@ import (
 	"net/http"
 )
 
-// HelloWorld prints the JSON encoded "message" field in the body
-// of the request or "Hello, World!" if there isn't one.
-func HelloWorld(w http.ResponseWriter, r *http.Request) {
+func PrintMessage(w http.ResponseWriter, r *http.Request) {
 	var d struct {
 		Message string `json:"message"`
 	}
