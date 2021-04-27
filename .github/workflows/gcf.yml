@@ -46,5 +46,5 @@ jobs:
       - id: Deploy
         uses: google-github-actions/deploy-cloud-functions@main
         with:
-          name: function-2
+          name: hello-world
           runtime: go113
