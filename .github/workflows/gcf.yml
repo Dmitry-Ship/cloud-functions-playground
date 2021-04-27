@@ -46,5 +46,5 @@ jobs:
       - id: Deploy
         uses: google-github-actions/deploy-cloud-functions@main
         with:
-          name: function2
+          name: function-2
           runtime: go113
