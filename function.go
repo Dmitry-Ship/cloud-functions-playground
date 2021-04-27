@@ -15,11 +15,11 @@ func HelloWorld(w http.ResponseWriter, r *http.Request) {
 		Message string `json:"message"`
 	}
 	if err := json.NewDecoder(r.Body).Decode(&d); err != nil {
-		fmt.Fprint(w, "no message provided")
+		fmt.Fprint(w, "no message provided!")
 		return
 	}
 	if d.Message == "" {
-		fmt.Fprint(w, "empty message provided")
+		fmt.Fprint(w, "empty message provided!")
 		return
 	}
 	fmt.Fprint(w, html.EscapeString(d.Message))
