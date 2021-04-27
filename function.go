@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-func HelloWorld(w http.ResponseWriter, r *http.Request) {
+func GetMessage(w http.ResponseWriter, r *http.Request) {
 	var d struct {
 		Message string `json:"message"`
 	}
