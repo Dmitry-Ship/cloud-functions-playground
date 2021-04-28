@@ -2,25 +2,25 @@
 package p
 
 import (
-	"encoding/json"
-	"fmt"
-	"html"
 	"net/http"
+
+	"example.com/cloudfunction/common"
 )
 
 func GetMessage(w http.ResponseWriter, r *http.Request) {
-	var d struct {
-		Message string `json:"message"`
-	}
+	result1 := make(chan interface{})
+	result2 := make(chan interface{})
 
-	if err := json.NewDecoder(r.Body).Decode(&d); err != nil {
-		fmt.Fprint(w, "no message provided!")
-		return
-	}
+	changelogs := Changelogs{}
 
-	if d.Message == "" {
-		fmt.Fprint(w, "empty message provided!")
-		return
+	go common.MakeRequest("https://manychat.com/changelog/get", &changelogs, result1)
+	go common.MakeRequest("https://jsonplaceholder.typicode.com/todos/1", &changelogs, result2)
+
+	select {
+	case msg1 := <-result1:
+		common.SendJSONresponse(msg1, w)
+
+	case msg2 := <-result2:
+		common.SendJSONresponse(msg2, w)
 	}
-	fmt.Fprint(w, html.EscapeString(d.Message))
 }
