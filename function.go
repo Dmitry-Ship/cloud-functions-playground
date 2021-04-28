@@ -15,7 +15,6 @@ func GetMessage(w http.ResponseWriter, r *http.Request) {
 
 	go common.MakeRequest("https://manychat.com/changelog/get", &changelogs, result1)
 	go common.MakeRequest("https://jsonplaceholder.typicode.com/todos/1", &changelogs, result2)
-
 	select {
 	case msg1 := <-result1:
 		common.SendJSONresponse(msg1, w)
