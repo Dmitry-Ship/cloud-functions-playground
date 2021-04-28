@@ -46,5 +46,6 @@ jobs:
       - id: Deploy
         uses: google-github-actions/deploy-cloud-functions@main
         with:
-          name: GetMessage
+          name: getMessage
+          entry_point: GetMessage
           runtime: go113
