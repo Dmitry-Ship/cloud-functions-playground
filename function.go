@@ -2,24 +2,39 @@
 package p
 
 import (
+	"encoding/json"
 	"net/http"
-
-	"example.com/cloudfunction/common"
 )
 
-func GetMessage(w http.ResponseWriter, r *http.Request) {
-	result1 := make(chan interface{})
-	result2 := make(chan interface{})
+type Request struct {
+	Message string
+}
+type Response struct {
+	Data string `json:"data"`
+}
 
-	changelogs := Changelogs{}
-
-	go common.MakeRequest("https://manychat.com/changelog/get", &changelogs, result1)
-	go common.MakeRequest("https://jsonplaceholder.typicode.com/todos/1", &changelogs, result2)
-	select {
-	case msg1 := <-result1:
-		common.SendJSONresponse(msg1, w)
-
-	case msg2 := <-result2:
-		common.SendJSONresponse(msg2, w)
+func processRequest(r Request) Response {
+	if r.Message == "" {
+		return Response{
+			Data: "empty message",
+		}
 	}
+
+	return Response{
+		Data: r.Message,
+	}
+}
+
+func GetMessage(w http.ResponseWriter, r *http.Request) {
+	var request Request
+
+	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		json.NewEncoder(w).Encode(err)
+		return
+	}
+
+	data := processRequest(request)
+
+	json.NewEncoder(w).Encode(&data)
 }
