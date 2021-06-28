@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	p "GCF-test"
+	p "example.com/module"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/funcframework"
 )

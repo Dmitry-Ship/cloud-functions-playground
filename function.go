@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"GCF-test/common"
+	"example.com/module/common"
 )
 
 type Request struct {

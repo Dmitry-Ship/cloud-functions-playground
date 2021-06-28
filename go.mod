@@ -1,4 +1,4 @@
-module GCF-test
+module example.com/module
 
 go 1.15
 
