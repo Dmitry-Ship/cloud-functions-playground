@@ -1,4 +1,4 @@
-module example.com/cloudfunction
+module GCF-test
 
 go 1.15
 

@@ -4,11 +4,14 @@ package p
 import (
 	"encoding/json"
 	"net/http"
+
+	"GCF-test/common"
 )
 
 type Request struct {
 	Message string
 }
+
 type Response struct {
 	Data string `json:"data"`
 }
@@ -28,6 +31,10 @@ func processRequest(r Request) Response {
 func GetMessage(w http.ResponseWriter, r *http.Request) {
 	var request Request
 
+	if r.Method != "POST" {
+		w.WriteHeader(http.StatusMethodNotAllowed)
+		return
+	}
 	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		json.NewEncoder(w).Encode(err)
@@ -36,5 +43,5 @@ func GetMessage(w http.ResponseWriter, r *http.Request) {
 
 	data := processRequest(request)
 
-	json.NewEncoder(w).Encode(&data)
+	common.SendJSONresponse(data, w)
 }
