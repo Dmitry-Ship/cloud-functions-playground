@@ -3,6 +3,7 @@ package p
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"example.com/module/common"
@@ -44,4 +45,8 @@ func GetMessage(w http.ResponseWriter, r *http.Request) {
 	data := processRequest(request)
 
 	common.SendJSONresponse(data, w)
+}
+
+func Hello(w http.ResponseWriter, r *http.Request) {
+	fmt.Fprintf(w, "Hello")
 }

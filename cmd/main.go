@@ -15,6 +15,10 @@ func main() {
 	if err := funcframework.RegisterHTTPFunctionContext(ctx, "/", p.GetMessage); err != nil {
 		log.Fatalf("funcframework.RegisterHTTPFunctionContext: %v\n", err)
 	}
+
+	if err := funcframework.RegisterHTTPFunctionContext(ctx, "/hello", p.Hello); err != nil {
+		log.Fatalf("funcframework.RegisterHTTPFunctionContext: %v\n", err)
+	}
 	// Use PORT environment variable, or default to 8081.
 	port := "8081"
 	if envPort := os.Getenv("PORT"); envPort != "" {
