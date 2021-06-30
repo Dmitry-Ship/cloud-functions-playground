@@ -36,14 +36,14 @@ jobs:
         with:
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           export_default_credentials: true
-      - id: Deploy getMessage function
+      - id: deploy_getMessage
         uses: google-github-actions/deploy-cloud-functions@main
         with:
           name: getMessage
           entry_point: GetMessage
           runtime: go113
 
-      - id: Deploy hello function
+      - id: deploy_hello
         uses: google-github-actions/deploy-cloud-functions@main
         with:
           name: hello
