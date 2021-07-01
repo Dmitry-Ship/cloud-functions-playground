@@ -5,8 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
-
-	"example.com/module/common"
 )
 
 type Request struct {
@@ -44,7 +42,7 @@ func GetMessage(w http.ResponseWriter, r *http.Request) {
 
 	data := processRequest(request)
 
-	common.SendJSONresponse(data, w)
+	json.NewEncoder(w).Encode(data)
 }
 
 func Hello(w http.ResponseWriter, r *http.Request) {

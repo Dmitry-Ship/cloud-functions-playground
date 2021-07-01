@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"os"
 
@@ -11,6 +12,8 @@ import (
 )
 
 func main() {
+	fmt.Printf("sdasdasd")
+
 	ctx := context.Background()
 	if err := funcframework.RegisterHTTPFunctionContext(ctx, "/", p.GetMessage); err != nil {
 		log.Fatalf("funcframework.RegisterHTTPFunctionContext: %v\n", err)
