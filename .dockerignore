@@ -1,0 +1,8 @@
+.env
+**/*tmp
+
+.vscode
+
+.git
+.gitignore
+.github
