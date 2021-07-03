@@ -12,21 +12,21 @@ import (
 
 func getEmoji(sentiment uint8) string {
 	type emojiList = []string
-	type emojiSentimentMap = map[uint8]emojiList
 
 	PosEmoList := emojiList{"🎁", "😙", "💞", "💃", "🎊", "🏆", "☺", "🐾", "😋", "😛", "🌸", "🐱", "😃", "🍜", "💪"}
 	NegEmoList := emojiList{"👿", "😕", "😐", "😒", "😿", "😦", "😾", "😠", "👺", "😡", "😨", "💩", "😭", "😓", "👹"}
+
+	type emojiSentimentMap = map[uint8]emojiList
 
 	EmojiSentimentMap := emojiSentimentMap{
 		0: NegEmoList,
 		1: PosEmoList,
 	}
+
 	emojis := EmojiSentimentMap[sentiment]
-
 	randomIndex := rand.Intn(len(emojis))
-	randomEmoji := emojis[randomIndex]
 
-	return randomEmoji
+	return emojis[randomIndex]
 }
 
 func getSentiment(text string) *sentiment.Analysis {
