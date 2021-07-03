@@ -2,7 +2,6 @@ package main
 
 import (
 	"context"
-	"fmt"
 	"log"
 	"os"
 
@@ -12,14 +11,9 @@ import (
 )
 
 func main() {
-	fmt.Printf("sdasdasd")
-
 	ctx := context.Background()
-	if err := funcframework.RegisterHTTPFunctionContext(ctx, "/", p.GetMessage); err != nil {
-		log.Fatalf("funcframework.RegisterHTTPFunctionContext: %v\n", err)
-	}
 
-	if err := funcframework.RegisterHTTPFunctionContext(ctx, "/hello", p.Hello); err != nil {
+	if err := funcframework.RegisterHTTPFunctionContext(ctx, "/getSentimentAnalysis", p.GetSentimentAnalysis); err != nil {
 		log.Fatalf("funcframework.RegisterHTTPFunctionContext: %v\n", err)
 	}
 	// Use PORT environment variable, or default to 8081.

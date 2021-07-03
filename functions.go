@@ -4,47 +4,71 @@ package p
 import (
 	"encoding/json"
 	"fmt"
+	"math/rand"
 	"net/http"
+
+	"github.com/cdipaolo/sentiment"
 )
 
-type Request struct {
-	Message string
+func getEmoji(sentiment uint8) string {
+	type emojiList = []string
+	type emojiSentimentMap = map[uint8]emojiList
+
+	PosEmoList := emojiList{"🎁", "😙", "💞", "💃", "🎊", "🏆", "☺", "🐾", "😋", "😛", "🌸", "🐱", "😃", "🍜", "💪"}
+	NegEmoList := emojiList{"👿", "😕", "😐", "😒", "😿", "😦", "😾", "😠", "👺", "😡", "😨", "💩", "😭", "😓", "👹"}
+
+	EmojiSentimentMap := emojiSentimentMap{
+		0: NegEmoList,
+		1: PosEmoList,
+	}
+	emojis := EmojiSentimentMap[sentiment]
+
+	randomIndex := rand.Intn(len(emojis))
+	randomEmoji := emojis[randomIndex]
+
+	return randomEmoji
 }
 
-type Response struct {
-	Data string `json:"data"`
-}
+func getSentiment(text string) *sentiment.Analysis {
+	model, err := sentiment.Restore()
+	if err != nil {
 
-func processRequest(r Request) Response {
-	if r.Message == "" {
-		return Response{
-			Data: "empty message",
-		}
+		panic(fmt.Sprintf("Could not restore model!\n\t%v\n", err))
 	}
 
-	return Response{
-		Data: r.Message,
-	}
+	analysis := model.SentimentAnalysis(text, sentiment.English)
+	return analysis
 }
 
-func GetMessage(w http.ResponseWriter, r *http.Request) {
-	var request Request
+func GetSentimentAnalysis(w http.ResponseWriter, r *http.Request) {
+	type ReqBody struct {
+		Text string `json:"text"`
+	}
+
+	var request ReqBody
 
 	if r.Method != "POST" {
 		w.WriteHeader(http.StatusMethodNotAllowed)
 		return
 	}
+
 	if err := json.NewDecoder(r.Body).Decode(&request); err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		json.NewEncoder(w).Encode(err)
 		return
 	}
 
-	data := processRequest(request)
+	analysis := getSentiment(request.Text)
+	score := analysis.Score
+	emoji := getEmoji(analysis.Score)
 
-	json.NewEncoder(w).Encode(data)
-}
+	type ResBody struct {
+		Emoji string `json:"emoji"`
+		Score uint8  `json:"score"`
+	}
 
-func Hello(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "Hello")
+	resBody := ResBody{Score: score, Emoji: emoji}
+
+	w.Header().Set("Content-Type", "application/json")
+	json.NewEncoder(w).Encode(resBody)
 }

@@ -10,10 +10,7 @@ COPY . .
 
 ENV PORT=${PORT}
 
-RUN go get -u github.com/cosmtrek/air
+RUN go get github.com/githubnemo/CompileDaemon
 
-RUN touch .air.toml
+ENTRYPOINT CompileDaemon --build="go build -v -o tmp/bin ./cmd/main.go" --command=./tmp/bin
 
-WORKDIR /src/cmd
-
-CMD ["air"]  

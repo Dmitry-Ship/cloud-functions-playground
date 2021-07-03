@@ -36,6 +36,10 @@ github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03
 github.com/BurntSushi/xgb v0.0.0-20160522181843-27f122750802/go.mod h1:IVnqGOEym/WlBOVXweHU+Q+/VP0lqqI8lqeDx9IjBqo=
 github.com/GoogleCloudPlatform/functions-framework-go v1.2.0 h1:E4DI4WUMSlOJXMkqBWOHKTXOnWfjHuuLQMseDudJUGM=
 github.com/GoogleCloudPlatform/functions-framework-go v1.2.0/go.mod h1:slApqIKn4fvBaQl1VRZJsWCx9I8WzC2JlUZAtuF41kU=
+github.com/cdipaolo/goml v0.0.0-20190412180403-e1f51f713598 h1:j2XRGH5Y5uWtBYXGwmrjKeM/kfu/jh7ZcnrGvyN5Ttk=
+github.com/cdipaolo/goml v0.0.0-20190412180403-e1f51f713598/go.mod h1:sduMkaHcXDIWurl/Bd/z0rNEUHw5tr6LUA9IO8E9o0o=
+github.com/cdipaolo/sentiment v0.0.0-20200617002423-c697f64e7f10 h1:6dGQY3apkf7lG3a1UFhS6grlo009buPFVy79RvNVUF4=
+github.com/cdipaolo/sentiment v0.0.0-20200617002423-c697f64e7f10/go.mod h1:JWoVf4GJxCxM3iCiZSVoXNMV+JFG49L+ou70KK3HTvQ=
 github.com/census-instrumentation/opencensus-proto v0.2.1/go.mod h1:f6KPmirojxKA12rnyqOA5BBL4O983OfeGPqjHWSTneU=
 github.com/chzyer/logex v1.1.10/go.mod h1:+Ywpsq7O8HXn0nuIou7OrIPyXbp3wmkHB+jjWRnGsAI=
 github.com/chzyer/readline v0.0.0-20180603132655-2972be24d48e/go.mod h1:nSuG5e5PlCu98SY8svDHJxuZscDgtXS6KTTbou5AhLI=

@@ -37,16 +37,10 @@ jobs:
         with:
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           export_default_credentials: true
-      - id: deploy_getMessage
-        uses: google-github-actions/deploy-cloud-functions@main
-        with:
-          name: getMessage
-          entry_point: GetMessage
-          runtime: go113
 
-      - id: deploy_hello
+      - id: deploy_sentiment_analyzer
         uses: google-github-actions/deploy-cloud-functions@main
         with:
-          name: hello
-          entry_point: Hello
+          name: getSentimentAnalysis
+          entry_point: GetSentimentAnalysis
           runtime: go113
