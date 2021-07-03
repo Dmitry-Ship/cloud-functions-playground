@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	p "example.com/module"
+	functions "example.com/module"
 
 	"github.com/GoogleCloudPlatform/functions-framework-go/funcframework"
 )
@@ -13,9 +13,10 @@ import (
 func main() {
 	ctx := context.Background()
 
-	if err := funcframework.RegisterHTTPFunctionContext(ctx, "/getSentimentAnalysis", p.GetSentimentAnalysis); err != nil {
+	if err := funcframework.RegisterHTTPFunctionContext(ctx, "/getSentimentAnalysis", functions.GetSentimentAnalysis); err != nil {
 		log.Fatalf("funcframework.RegisterHTTPFunctionContext: %v\n", err)
 	}
+
 	// Use PORT environment variable, or default to 8081.
 	port := "8081"
 	if envPort := os.Getenv("PORT"); envPort != "" {
