@@ -12,5 +12,5 @@ ENV PORT=${PORT}
 
 RUN go get github.com/githubnemo/CompileDaemon
 
-ENTRYPOINT CompileDaemon --build="go build -v -o tmp/bin ./cmd/main.go" --command=./tmp/bin
+ENTRYPOINT CompileDaemon --build="go build -v -o go-bin ./cmd/main.go" --command=./go-bin
 
