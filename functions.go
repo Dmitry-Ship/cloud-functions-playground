@@ -28,11 +28,12 @@ func GetSentimentAnalysis(w http.ResponseWriter, r *http.Request) {
 	emoji := GetEmoji(score)
 
 	type ResBody struct {
-		Emoji string `json:"emoji"`
-		Score uint8  `json:"score"`
+		Emoji       string `json:"emoji"`
+		Score       uint8  `json:"score"`
+		Description string `json:"description"`
 	}
 
-	resBody := ResBody{Score: score, Emoji: emoji}
+	resBody := ResBody{Score: score, Emoji: emoji, Description: GetSentimentDesc(score)}
 
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(resBody)

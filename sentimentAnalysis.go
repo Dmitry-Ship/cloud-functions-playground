@@ -35,3 +35,12 @@ func GetSentimentScore(text string) uint8 {
 	analysis := model.SentimentAnalysis(text, sentiment.English)
 	return analysis.Score
 }
+
+func GetSentimentDesc(sentiment uint8) string {
+	type sentimentDescMap = map[uint8]string
+	SentimentDescMap := sentimentDescMap{
+		0: "Negative",
+		1: "Positive",
+	}
+	return SentimentDescMap[sentiment]
+}
