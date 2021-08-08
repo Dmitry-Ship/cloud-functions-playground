@@ -1,0 +1,16 @@
+name: Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      build_number:
+        description: "Build number"
+        required: true
+
+jobs:
+  build:
+    name: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy
+        run: echo "deployed ${{ github.event.inputs.build_number }}"
