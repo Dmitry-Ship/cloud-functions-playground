@@ -1,4 +1,4 @@
-name: Test
+name: Fake Deployment
 
 on:
   workflow_dispatch:
@@ -7,6 +7,10 @@ on:
         description: "Build number"
         required: true
 
+env:
+  RUN_NUMBER: ${{ github.run_number }}
+  RUN_NUMBER_WITH_OFFSET: $(($RUN_NUMBER+1000))
+
 jobs:
   build:
     name: deploy
@@ -14,3 +18,5 @@ jobs:
     steps:
       - name: deploy
         run: echo "deployed ${{ github.event.inputs.build_number }}"
+
+      - run: echo "run number with offset ${{ env.RUN_NUMBER_WITH_OFFSET }}"
