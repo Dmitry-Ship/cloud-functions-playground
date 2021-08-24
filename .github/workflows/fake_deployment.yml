@@ -22,4 +22,4 @@ jobs:
       - name: deploy
         run: echo "deployed ${{ github.event.inputs.build_number }}"
 
-      - run: echo "run number with offset ${{ env.RUN_NUMBER_WITH_OFFSET }}"
+      - run: echo "run number ${{ matrix.group }}"
