@@ -16,10 +16,10 @@ jobs:
     name: build (${{matrix.group}})
     strategy:
       matrix:
-        group: [RUN_NUMBER, RUN_NUMBER_WITH_OFFSET]
+        group: [{ build: RUN_NUMBER }, { build: RUN_NUMBER_WITH_OFFSET }]
     runs-on: ubuntu-latest
     steps:
       - name: deploy
         run: echo "deployed ${{ github.event.inputs.build_number }}"
 
-      - run: echo "run number ${{ env[matrix.group] }}"
+      - run: echo "run number ${{ env[matrix.group.build] }}"
