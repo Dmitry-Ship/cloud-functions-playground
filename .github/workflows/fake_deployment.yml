@@ -1,4 +1,4 @@
-name: Fake Deployment
+name: 🚀 Fake Deployment
 
 on:
   workflow_dispatch:
@@ -13,7 +13,7 @@ env:
 
 jobs:
   build:
-    name: build (${{matrix.group}})
+    name: build (${{matrix.group.build}})
     strategy:
       matrix:
         group: [{ build: RUN_NUMBER }, { build: RUN_NUMBER_WITH_OFFSET }]
