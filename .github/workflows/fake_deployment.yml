@@ -15,13 +15,19 @@ on:
     branches:
       - main
 
-env:
-  BUILD_NUMBER: ${{ github.event.inputs.build_number || github.event.workflow_run.run_number }}
-
 jobs:
-  deploy:
+  auto-deploy:
+    name: "Auto Deploy"
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - name: deploy
-        run: echo "deployed ${{ env.BUILD_NUMBER }}"
+        run: echo "deployed ${{ github.event.workflow_run.run_number }}"
+
+  manual-deploy:
+    name: "Manual Deploy"
+    if: ${{ github.event.inputs.build_number != null }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy
+        run: echo "deployed ${{ github.event.inputs.build_number }}"
