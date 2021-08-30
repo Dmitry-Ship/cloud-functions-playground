@@ -19,7 +19,8 @@ env:
   BUILD_NUMBER: ${{ github.event.inputs.build_number || github.event.workflow_run.run_number }}
 
 jobs:
-  build:
+  deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
       - name: deploy
