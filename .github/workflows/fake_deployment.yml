@@ -29,4 +29,4 @@ jobs:
       - name: annotation
         uses: actions/github-script@v4
         with:
-          script: core.info('deployed ${{ env.BUILD_NUMBER }}')
+          script: core.warn('deployed ${{ env.BUILD_NUMBER }}')
