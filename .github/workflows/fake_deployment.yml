@@ -23,10 +23,12 @@ jobs:
     if: ${{ github.event.inputs.build_number || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
     steps:
-      - name: deploy
-        run: echo "deployed ${{ env.BUILD_NUMBER }}"
+      # - name: deploy
+      #   run: echo "deployed ${{ env.BUILD_NUMBER }}"
 
       - name: annotation
         uses: actions/github-script@v4
         with:
-          script: core.warn('deployed ${{ env.BUILD_NUMBER }}')
+          script: |
+            const core = require('@actions/core');
+            core.notice('deployed ${{ env.BUILD_NUMBER }}');
