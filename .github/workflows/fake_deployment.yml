@@ -27,6 +27,6 @@ jobs:
         run: echo "deployed ${{ env.BUILD_NUMBER }}"
 
       - name: annotation
-        uses: actions/github-script@v3
+        uses: actions/github-script@v4
         with:
           script: core.notice('deployed ${{ env.BUILD_NUMBER }}')
