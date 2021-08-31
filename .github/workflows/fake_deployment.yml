@@ -30,5 +30,4 @@ jobs:
         uses: actions/github-script@v4
         with:
           script: |
-            const core = require('@actions/core');
             core.notice('deployed ${{ env.BUILD_NUMBER }}');
