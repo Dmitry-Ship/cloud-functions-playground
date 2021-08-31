@@ -30,4 +30,4 @@ jobs:
         uses: actions/github-script@v4
         with:
           script: |
-            core.notice('deployed ${{ env.BUILD_NUMBER }}');
+            core.warning("deployed ${{ env.BUILD_NUMBER }}");
