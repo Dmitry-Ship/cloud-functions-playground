@@ -1,2 +1,2 @@
-# cloud-functions-playground ![gcf workflow](https://github.com/Dmitry-SHip/cloud-functions-playground/actions/workflows/gcf.yml/badge.svg)
+# cloud-functions-playground [![Main](https://github.com/Dmitry-Ship/cloud-functions-playground/actions/workflows/main.yml/badge.svg)](https://github.com/Dmitry-Ship/cloud-functions-playground/actions/workflows/main.yml)
 Playground for Google Cloud Functions
