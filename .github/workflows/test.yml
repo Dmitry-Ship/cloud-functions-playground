@@ -24,6 +24,7 @@ on:
       project:
         required: true
         default: "front"
+        type: string
 jobs:
   echo:
     name: echo
