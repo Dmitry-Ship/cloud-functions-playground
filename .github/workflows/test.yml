@@ -28,3 +28,10 @@ on:
         type: choice
         options:
           - front
+  jobs:
+    echo:
+      name: echo
+      runs-on: ubuntu-latest
+      steps:
+        - name: echo
+          run: echo "hello"
