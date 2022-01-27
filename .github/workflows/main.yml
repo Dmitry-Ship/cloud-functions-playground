@@ -47,7 +47,7 @@ jobs:
           entry_point: GetSentimentAnalysis
           runtime: go113
 
-      - uses: ./.github/workflows/test
+      - uses: Dmitry-Ship/cloud-functions-playground/.github/workflows/test.yml@main
         with:
           build_number: 123
           project: "front"
