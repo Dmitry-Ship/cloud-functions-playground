@@ -31,9 +31,9 @@ jobs:
   test:
     needs: [build]
     uses: Dmitry-Ship/cloud-functions-playground/.github/workflows/test.yml@main
-      with:
-        build_number: 123
-        project: "front"
+    with:
+      build_number: 123
+      project: "front"
   deploy:
     needs: [build]
     name: deploy
