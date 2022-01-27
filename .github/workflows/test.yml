@@ -1,0 +1,30 @@
+name: Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      build_number:
+        type: number
+        description: "Build number"
+        required: true
+      project:
+        description: "Project"
+        required: true
+        default: "front"
+        type: choice
+        options:
+          - front
+
+  workflow_call:
+    inputs:
+      build_number:
+        type: number
+        description: "Build number"
+        required: true
+      project:
+        description: "Project"
+        required: true
+        default: "front"
+        type: choice
+        options:
+          - front
