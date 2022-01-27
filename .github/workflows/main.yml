@@ -28,6 +28,12 @@ jobs:
       - name: Test
         run: go test ./... -v .
 
+  test:
+    needs: [build]
+    uses: Dmitry-Ship/cloud-functions-playground/.github/workflows/test.yml@main
+      with:
+        build_number: 123
+        project: "front"
   deploy:
     needs: [build]
     name: deploy
@@ -46,8 +52,3 @@ jobs:
           name: getSentimentAnalysis
           entry_point: GetSentimentAnalysis
           runtime: go113
-
-      - uses: Dmitry-Ship/cloud-functions-playground/.github/workflows/test.yml@main
-        with:
-          build_number: 123
-          project: "front"
